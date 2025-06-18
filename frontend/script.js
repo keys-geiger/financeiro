@@ -1,5 +1,5 @@
 // A URL base da sua API do backend para uso LOCAL.
-const API_BASE_URL = 'http://localhost:3000/api';
+const API_BASE_URL = 'https://financeiro-howq.onrender.com/api';
 
 // --- Lógica de verificação de login no DASHBOARD (executada imediatamente) ---
 // Se o usuário tentar acessar dashboard.html diretamente sem userId no localStorage,
