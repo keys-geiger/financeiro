@@ -197,7 +197,8 @@ header .container::after {
 
 /* Seções de Largura Total (Topo e Rodapé) */
 .full-width-section {
-    width: 100%;
+    width: 60.50%;
+    margin-left: 18%;
     margin-top: 25px; /* Espaçamento da seção de cima */
     margin-bottom: 25px; /* Espaçamento da seção de baixo */
 }
