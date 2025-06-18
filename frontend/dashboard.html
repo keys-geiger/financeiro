@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Gerenciamento Financeiro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gerenciamento Financeiro</h1>
+            <nav>
+                <ul>
+                    <li><a href="#overview-top">Visão Geral</a></li>
+                    <li><a href="#transactions-bottom">Transações</a></li> 
+                    <li><a href="#" id="logoutButton">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="overview-top" class="card full-width-section">
+        <h2>Visão Geral do Mês</h2>
+        <div class="summary-grid">
+            <div class="summary-item income">
+                <h3>Receitas</h3>
+                <p id="totalIncome">R$ 0,00</p>
+            </div>
+            <div class="summary-item expenses">
+                <h3>Despesas</h3>
+                <p id="totalExpenses">R$ 0,00</p>
+            </div>
+            <div class="summary-item balance">
+                <h3>Saldo Atual</h3>
+                <p id="currentBalance">R$ 0,00</p>
+            </div>
+        </div>
+    </section>
+
+    <main class="container main-grid two-column-grid"> <div class="column">
+            <section id="add-income" class="card">
+                <h2>Adicionar Nova Receita</h2>
+                <form id="incomeForm">
+                    <div class="input-group">
+                        <label for="incomeDescription">Descrição:</label>
+                        <input type="text" id="incomeDescription" required placeholder="Ex: Salário, Freelance, Bônus">
+                    </div>
+                    <div class="input-group">
+                        <label for="incomeAmount">Valor (R$):</label>
+                        <input type="number" id="incomeAmount" step="0.01" required placeholder="Ex: 2500.00">
+                    </div>
+                    <div class="input-group">
+                        <label for="incomeDate">Data:</label>
+                        <input type="date" id="incomeDate" required>
+                    </div>
+                    <button type="submit">Adicionar Receita</button>
+                    <p id="incomeMessage" class="success-message"></p>
+                </form>
+            </section>
+        </div>
+
+        <div class="column">
+            <section id="add-expense" class="card">
+                <h2>Adicionar Nova Despesa</h2>
+                <form id="expenseForm">
+                    <div class="input-group">
+                        <label for="expenseDescription">Descrição:</label>
+                        <input type="text" id="expenseDescription" required placeholder="Ex: Aluguel, Supermercado, Lazer">
+                    </div>
+                    <div class="input-group">
+                        <label for="expenseAmount">Valor (R$):</label>
+                        <input type="number" id="expenseAmount" step="0.01" required placeholder="Ex: 50.00">
+                    </div>
+                    <div class="input-group">
+                        <label for="expenseCategory">Categoria:</label>
+                        <select id="expenseCategory" required>
+                            <option value="">Selecione uma categoria</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Transporte">Transporte</option>
+                            <option value="Moradia">Moradia</option>
+                            <option value="Lazer">Lazer</option>
+                            <option value="Educação">Educação</option>
+                            <option value="Saúde">Saúde</option>
+                            <option value="Contas">Contas</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="expenseDate">Data:</label>
+                        <input type="date" id="expenseDate" required>
+                    </div>
+                    <button class="desp" type="submit">Adicionar Despesa</button>
+                    <p id="expenseMessage" class="success-message"></p>
+                </form>
+            </section>
+
+           
+        </div>
+    </main>
+
+    <section id="transactions-bottom" class="card full-width-section">
+        <h2>Transações Recentes</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="transactionsTableBody">
+                </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Gerenciamento Financeiro. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="editTransactionModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Editar Transação</h2>
+            <form id="editTransactionForm">
+                <input type="hidden" id="editTransactionId">
+                <input type="hidden" id="editTransactionType">
+
+                <div class="input-group">
+                    <label for="editDescription">Descrição:</label>
+                    <input type="text" id="editDescription" required>
+                </div>
+                <div class="input-group">
+                    <label for="editAmount">Valor (R$):</label>
+                    <input type="number" id="editAmount" step="0.01" required>
+                </div>
+                <div class="input-group" id="editCategoryGroup">
+                    <label for="editCategory">Categoria:</label>
+                    <select id="editCategory">
+                        <option value="Alimentação">Alimentação</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Moradia">Moradia</option>
+                        <option value="Lazer">Lazer</option>
+                        <option value="Educação">Educação</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Contas">Contas</option>
+                        <option value="Outros">Outros</option>
+                        <option value="Receita">Receita</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="editDate">Data:</label>
+                    <input type="date" id="editDate" required>
+                </div>
+                <button type="submit">Salvar Alterações</button>
+                <p id="editMessage" class="success-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
