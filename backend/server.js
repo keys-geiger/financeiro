@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path'); // Necessário para servir arquivos estáticos
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
 // Conexão com MongoDB Atlas
 const mongoUri = process.env.MONGODB_URI;
